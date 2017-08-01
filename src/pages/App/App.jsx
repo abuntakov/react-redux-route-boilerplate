@@ -9,7 +9,7 @@ class App extends React.PureComponent {
 
 		return (
 			<div className="react-app">
-				<h1>App component</h1>
+				<h1>App component 5</h1>
 				{children}
 			</div>
 		)
@@ -18,12 +18,6 @@ class App extends React.PureComponent {
 
 App.propTypes = {
 	children: PropTypes.node.isRequired,
-}
-
-function mapStateToProps(state) {
-	return {
-		app: state.get('app'),
-	}
 }
 
 export default App

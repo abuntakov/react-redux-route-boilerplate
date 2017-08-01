@@ -1,13 +1,24 @@
 import path from 'path'
-import webpack from 'webpack'
+import webpack from 'webpack' // eslint-disable-line
 import merge from 'webpack-merge'
 import baseConfig from './webpack.config'
 
-import HtmlWebpackPlugin from 'html-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin' // eslint-disable-line
 
 const rootPath = path.resolve(__dirname, '../')
-const srcPath = path.resolve(rootPath, 'src')
 const assetsPath = path.resolve(rootPath, 'build')
+
+const babelOptions = {
+	presets: [
+		'react',
+		['es2015', { modules: false }],
+		'stage-0',
+	],
+	plugins: [
+		['transform-runtime'],
+		['add-module-exports'],
+	],
+}
 
 const config = {
 	devtool: 'cheap-module-eval-source-map',
@@ -16,10 +27,25 @@ const config = {
 
 	entry: {
 		index: [
-			//`webpack-hot-middleware/client?path=${host}:${port}/__webpack_hmr`,
-			//'react-hot-loader/patch',
+			// `webpack-hot-middleware/client?path=${host}:${port}/__webpack_hmr`,
+			'react-hot-loader/patch',
 			baseConfig.entry.index,
 		],
+	},
+
+	module: {
+		rules: [{
+			test:    /\.jsx?$/,
+			exclude: /node_modules\/.*/,
+
+			use: [
+				'react-hot-loader/webpack',
+				{
+					loader:  'babel-loader',
+					options: babelOptions,
+				},
+			],
+		}],
 	},
 
 	output: {
@@ -28,23 +54,24 @@ const config = {
 	},
 
 	devServer: {
-		contentBase: path.resolve(rootPath, 'build'),
+		contentBase: assetsPath,
 		port:        3000,
 	},
 
 	plugins: [
-		//new webpack.HotModuleReplacementPlugin(),
-		//new webpack.NamedModulesPlugin(),
+		new webpack.NamedModulesPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: JSON.stringify('development')
+				NODE_ENV: JSON.stringify('development'),
 			},
 		}),
 		new HtmlWebpackPlugin({
-			title: 'Index app',
+			title:    'Index app',
 			template: path.resolve(__dirname, 'index.ejs'),
 		}),
 	],
 }
+
+console.log(merge(baseConfig, config))
 
 export default merge(baseConfig, config)
