@@ -1,0 +1,10 @@
+/target
+/build
+/dist
+/logs
+/src/core
+node_modules
+.session
+*.log
+bower_components
+.idea/
