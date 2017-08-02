@@ -1,23 +1,33 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
+import {
+	Link,
+	Redirect,
+	Route,
+	withRouter,
+} from 'react-router-dom'
+
+import {
+	Jobs,
+	Profile,
+} from '../'
 
 class App extends React.PureComponent {
 	render() {
-		const {
-			children,
-		} = this.props
-
 		return (
 			<div className="react-app">
-				<h1>App component 1</h1>
-				{children}
+				<h1>App children component 2</h1>
+				<ul>
+					<li><Link to="/jobs">Jobs</Link></li>
+					<li><Link to="/profile">Profile</Link></li>
+				</ul>
+
+				<hr/>
+				<Route path="/jobs" component={Jobs} />
+				<Route path="/profile" component={Profile} />
 			</div>
 		)
 	}
 }
 
-App.propTypes = {
-	children: PropTypes.node.isRequired,
-}
-
-export default App
+export default withRouter(App)

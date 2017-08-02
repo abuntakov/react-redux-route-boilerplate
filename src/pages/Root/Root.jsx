@@ -1,11 +1,16 @@
 import React from 'react'
+import {
+	BrowserRouter as Router,
+} from 'react-router-dom'
 
-import { App } from '../'
+import {
+	App,
+} from '../'
 
 export default function Root(props) {
 	return (
-		<App>
-			<h1>App children component 2</h1>
-		</App>
+		<Router>
+			<App />
+		</Router>
 	)
 }
