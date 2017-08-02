@@ -5,7 +5,7 @@ import { App } from '../'
 export default function Root(props) {
 	return (
 		<App>
-			<h1>App children component</h1>
+			<h1>App children component 2</h1>
 		</App>
 	)
 }

@@ -17,5 +17,9 @@ const render = (props) => {
 render()
 
 if (module.hot) {
-	module.hot.accept('./pages/Root/Root', () => { render() })
+	console.log('HOT')
+	module.hot.accept()/*('./pages/Root/Root', () => {
+		console.log('HOT RENDER')
+		render()
+	})*/
 }

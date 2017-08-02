@@ -11,7 +11,7 @@ const assetsPath = path.resolve(rootPath, 'build')
 const babelOptions = {
 	presets: [
 		'react',
-		['es2015', { modules: false }],
+		['es2015', { "loose" : true, modules: false }],
 		'stage-0',
 	],
 	plugins: [
@@ -27,7 +27,6 @@ const config = {
 
 	entry: {
 		index: [
-			// `webpack-hot-middleware/client?path=${host}:${port}/__webpack_hmr`,
 			'react-hot-loader/patch',
 			baseConfig.entry.index,
 		],
@@ -39,7 +38,9 @@ const config = {
 			exclude: /node_modules\/.*/,
 
 			use: [
-				'react-hot-loader/webpack',
+				{
+					loader: 'react-hot-loader/webpack',
+				},
 				{
 					loader:  'babel-loader',
 					options: babelOptions,
@@ -56,6 +57,7 @@ const config = {
 	devServer: {
 		contentBase: assetsPath,
 		port:        3000,
+		hot:         true,
 	},
 
 	plugins: [
@@ -72,6 +74,6 @@ const config = {
 	],
 }
 
-console.log(merge(baseConfig, config))
+//console.log(JSON.stringify(merge.smart(baseConfig, config)))
 
 export default merge(baseConfig, config)

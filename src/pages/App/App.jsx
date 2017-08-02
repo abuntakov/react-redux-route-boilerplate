@@ -9,7 +9,7 @@ class App extends React.PureComponent {
 
 		return (
 			<div className="react-app">
-				<h1>App component 5</h1>
+				<h1>App component 1</h1>
 				{children}
 			</div>
 		)

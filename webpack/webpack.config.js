@@ -6,6 +6,8 @@ const srcPath = path.resolve(rootPath, 'src')
 const assetsPath = path.resolve(rootPath, 'build')
 const mainModulesPath = path.resolve(rootPath, 'node_modules')
 
+const babelOptions = {}
+
 const config = {
 	context: srcPath,
 
@@ -22,17 +24,13 @@ const config = {
 		modules:    [mainModulesPath],
 		extensions: ['.js', '.jsx'],
 		alias: {
-      	app: path.resolve(rootPath, 'src'),
+			app: path.resolve(rootPath, 'src'),
 		},
 	},
 
-	// module: {
-	// 	rules: [{
-	// 		test:    /\.jsx?$/,
-	// 		exclude: /node_modules\/.*/,
-	// 		loader:  'babel-loader',
-	// 	}],
-	// },
+	module: {
+		rules: [],
+	},
 
 	plugins: [
 		new webpack.optimize.OccurrenceOrderPlugin(),
