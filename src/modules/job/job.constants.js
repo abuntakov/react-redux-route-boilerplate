@@ -1,0 +1,3 @@
+export const FETCH_JOB_LIST = 'FETCH/jobList'
+export const FETCH_JOB_LIST_SUCCESS_EVENT = 'FETCH_SUCCESS_EVENT/jobList'
+export const FETCH_JOB_LIST_ERROR_EVENT   = 'FETCH_ERROR_EVENT/jobList'
